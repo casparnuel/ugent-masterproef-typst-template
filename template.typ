@@ -197,6 +197,11 @@
       ]
     )
   }
+
+  show emph: it => {
+    box(skew(it, ax: -14deg))
+  }
+
   show raw: set text(font: "Cascadia Mono", spacing: 100%)
   doc
   
