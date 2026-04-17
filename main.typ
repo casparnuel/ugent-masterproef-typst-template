@@ -30,7 +30,7 @@
 
   outline(depth: 3)
   outline(title: "List of Figures", target: figure.where(kind: image))
-  outline(title: "List of Tablesn", target: figure.where(kind: table))
+  outline(title: "List of Tables", target: figure.where(kind: table))
   abbr.list(title: "List of Acronyms")
   outline(title: "List of Code Fragments", target: figure.where(kind: raw))
 }
