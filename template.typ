@@ -77,6 +77,13 @@
   )
 }
 
+#let reset-figure-counters() = {
+    counter(math.equation).update(0)
+    counter(figure.where(kind: image)).update(0)
+    counter(figure.where(kind: table)).update(0)
+    counter(figure.where(kind: raw)).update(0)
+}
+
 // ============================================================================
 //                         MAIN TEMPLATE SHOW RULE
 // ============================================================================
@@ -111,17 +118,9 @@
   )
   set bibliography(style: "institute-of-electrical-and-electronics-engineers")
   set heading(numbering: "1.1")
-  set par(spacing: 1.6em, justify: true)
+  set par(spacing: 1.6em, leading: .7em, justify: true)
   set list(indent: 2em, spacing: 1.5em)
   set enum(indent: 2em, spacing: 1.5em)
-  show heading.where(level: 1): it => {
-    // reset figure counters so they are counted per chapter rather than globally
-    counter(math.equation).update(0)
-    counter(figure.where(kind: image)).update(0)
-    counter(figure.where(kind: table)).update(0)
-    counter(figure.where(kind: raw)).update(0)
-    it
-  }
   show heading.where(level: 2): h => {
     set block(above: 2em, below: 1.5em)
     set text(size: 1.3em)
@@ -172,6 +171,7 @@
     align(left, f.body)
     align(center, f.caption)
   }
+  show figure: block.with(breakable: false)
   let style-number(number) = text(gray)[#number]
   show raw.where(block: false): it => {
     box(it, fill: gray.lighten(85%), outset: (x: 2pt, y:3pt), radius: 5pt)
@@ -201,8 +201,10 @@
   show emph: it => {
     box(skew(it, ax: -14deg))
   }
-
+  
   show raw: set text(font: "Cascadia Mono", spacing: 100%)
+  show "->": sym.arrow.r
+  show "<-": sym.arrow.l
   doc
   
   set page(numbering: none, header: none, footer: none)
@@ -360,6 +362,7 @@
     h
   }
   show heading.where(level: 1): h => {
+    reset-figure-counters()
     if (counter(heading).at(here()).at(0) != 1) {
       pagebreak(weak: true)
     }
