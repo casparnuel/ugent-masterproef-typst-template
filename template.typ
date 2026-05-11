@@ -171,6 +171,7 @@
     align(left, f.body)
     align(center, f.caption)
   }
+  show figure.where(kind: table): set figure.caption(position: top)
   show figure: block.with(breakable: false)
   let style-number(number) = text(gray)[#number]
   show raw.where(block: false): it => {
