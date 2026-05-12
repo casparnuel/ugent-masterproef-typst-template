@@ -132,6 +132,7 @@
     h
   }
   show heading.where(level: 4): set heading(numbering: none)
+  show heading.where(level: 4): set text(size: 13.5pt)
   show link: l => {
     if highlight-links {
       if type(l.dest) == str {
@@ -165,7 +166,7 @@
     }
   }
   set figure(numbering: (..num) =>
-    numbering("1.1 ", counter(heading).get().first(), num.pos().first())
+    numbering("1.1", counter(heading).get().first(), num.pos().first())
   )
   show figure.where(kind: raw): f => {
     align(left, f.body)
@@ -203,7 +204,7 @@
     box(skew(it, ax: -14deg))
   }
   
-  show raw: set text(font: "Cascadia Mono", spacing: 100%)
+  show raw: set text(font: "Cascadia Mono", spacing: 100%, size: 9pt)
   show "->": sym.arrow.r
   show "<-": sym.arrow.l
   doc
